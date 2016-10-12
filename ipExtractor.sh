@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ipadresses=$(ifconfig | grep -e "inet addr" | awk '{print $2}' | sed s/"addr:"// )
 for words in $ipadresses ; do
 if [[ $words == 192.168* || $words == 10* ]]; then
