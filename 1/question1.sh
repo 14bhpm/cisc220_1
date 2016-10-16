@@ -2,6 +2,7 @@
 
 read -n1 -p"Please insert a number: " totalVar
 
+[ "$totalVar" == ":" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 [ "$totalVar" == "q" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 
 flag=0
@@ -15,6 +16,7 @@ while true; do
 	if [[ $flag == 0 ]] || [[ ${#totalVar} == 0 ]]; then
 		echo ""
 		read -n1 -p"ERROR! Please insert a number: " totalVar
+		[ "$totalVar" == ":" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 		[ "$totalVar" == "q" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 		continue
 	elif [[ $flag == 1 ]]; then
@@ -35,9 +37,10 @@ while true; do
 	
 	while true; do
 	
-		if [[ $opt != ')' ]] && [[ $opt != '+' ]] && [[ $opt != '/' ]] && [[ $opt != '-' ]] && [[ ${#opt} == 0 ]]  ; then
+		if [[ $opt != '*' ]] && [[ $opt != '+' ]] && [[ $opt != '/' ]] && [[ $opt != '-' ]] && [[ ${#opt} == 0 ]]  ; then
 			echo ""
 			read -n1 -p"ERROR! Please insert an operator: " opt
+			[ "$opt" == ":" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 			[ "$opt" == "q" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 			continue
 		else
@@ -46,12 +49,9 @@ while true; do
 	
 	done
 	
-	if [[ $opt == "*" ]]; then
-		opt=')'
-	fi
-	
 	echo ""
 	read -n1 -p "Please insert a number: " secondNum
+	[ "$secondNum" == ":" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 	[ "$secondNum" == "q" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 	
 	flag=0
@@ -65,6 +65,7 @@ while true; do
 		if [[ $flag == 0 ]] || [[ ${#secondNum} == 0 ]] ; then
 			echo ""
 			read -n1 -p"ERROR! Please insert a number: " secondNum
+			[ "$secondNum" == ":" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 			[ "$secondNum" == "q" ] && echo "" && echo "Thank you for using CISC 220's best calculator" && exit
 			continue
 		elif [[ $flag == 1 ]]; then
@@ -73,16 +74,16 @@ while true; do
 	
 	done
 	
-	if [ $opt == ')' ]
+	if [ "$opt" == '*' ]
 	then
 		((totalVar=$totalVar * $secondNum))
-	elif [ $opt == "-" ]
+	elif [ "$opt" == "-" ]
 	then
 		((totalVar=$totalVar-$secondNum))
-	elif [ $opt == "+" ]
+	elif [ "$opt" == "+" ]
 	then
 		((totalVar=$totalVar+$secondNum)) 
-	elif [ $opt == "/" ] 
+	elif [ "$opt" == "/" ] 
 	then
 		((totalVar=$totalVar/$secondNum))
 	fi
