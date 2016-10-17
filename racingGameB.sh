@@ -19,6 +19,7 @@ lane3=0
 remDistance1=40
 remDistance2=40
 remDistance3=40
+
 # KEEPS ON LOOPING UNTIL ANY OF THE LANE VARIABLES IS GREATER OR EQUAL TO 40
 while true; do
 	echo ""
@@ -27,80 +28,6 @@ while true; do
 	
 	# CLEAR SCREEN
 	printf "\033c"
-	
-	# INPUT VERIFICATION
-	#flag=0
-	#while true; do
-
-#		case $input in
-#		*[!1-3]*) flag=0 ;;
-#		*) flag=1 ;;
-#		esac
-
-#		if [[ $flag == 0 ]] || [[ ${#totalVar} == 0 ]]; then
-#			echo ""
-#			read -n1 -p"ERROR! Please insert 1, 2 or 3: " input
-#			continue
-#		elif [[ $flag == 1 ]]; then
-#			break
-#		fi
-	
-#	done
-	
-	# IF-ELSE BLOCK CHECKS INPUT, INCREMENTS ATTRIBUTES AND PRINTS ACCORDINGLY
-	#if [[ $input == 1 ]]; then
-	
-		# INCREMENT
-	#	((lane1=$lane1+1))
-		
-		# PRINT COVERED DISTANCE
-	#	for (( n=0; n<$lane1; n++ )); do
-	#		printf "~"
-	#	done
-		
-		# PRINT CAR
-	#	printf "|->"
-		
-		# PRINT REMAINING DISTANCE
-	#	(( remDistance1=40-$lane1 ))
-	#	for (( n=0; n<remDistance; n++ )); do
-	#		printf " "
-	#	done
-		
-		# PRINT END OF TRACK 2
-	#	printf "# Lane 1 #"
-	
-	#elif [[ $input == 2 ]]; then
-	
-		# INCREMENT
-	#	((lane2=$lane2+1))
-		
-		# PRINT COVERED DISTANCE
-	#	for (( n=0; n<$lane2; n++ )); do
-	#		printf "~"
-	#	done
-		
-		# PRINT CAR
-	#	printf "|->"
-		
-		# PRINT REMAINING DISTANCE
-	#	(( remDistance2=40-$lane2 ))
-	#	for (( n=0; n<$remDistance2; n++ )); do
-	#		printf " "
-	#	done
-		
-		# PRINT END OF TRACK 2
-	#	printf "# Lane 2 #"
-		
-	#elif [[ $input == 3 ]]; then
-	#	((lane3=$lane3+1))
-	#	for (( n=0; n<$lane3; n++ )); do
-	#		printf "~"
-	#	done
-	#	printf "|->"
-	#	printf "\t"
-	#	printf "# Lane 3 #"
-	#fi
 	
 	((lane$input+=1))
 	((remDistance$input-=1))	
