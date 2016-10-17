@@ -18,19 +18,12 @@ read -n1 -p "Enter the amount of users: " mainInput
 # I INCREMENTED THIS CUS THE MAIN FOR LOOP BELOW STARTS FROM N=1
 ((mainInput=$mainInput+1))
 
-# DECLARE LANE1=0, LANE2=0, LANEN=0...... BASED ON USERS INPUT
-c=0
-for (( n=0; n<$mainInput; n++ )); do
-    eval "lane$c=0";
-    c=$((c+1));
-done
+# DECLARE LANE1=0 & remDistance1=40, LANE2=0 & remDistance2=40, LANEN=0 & remDistanceN=40...... BASED ON USERS INPUT
 
-# DECLARE remDIstance1=40, remDistance2=40, remDistanceN=40..... BASED ON USERS INPUT
-d=0
-for (( n=0; n<$mainInput; n++ )); do
-	eval "remDistance$d=40";
-    d=$((d+1));
-done
+for (( n=1; n<$mainInput; n++ )); do
+    eval "lane$n=0";
+    eval "remDistance$n=40";
+done 
 
 
 # KEEPS ON LOOPING UNTIL ANY OF THE LANE VARIABLES IS GREATER OR EQUAL TO 40
@@ -63,12 +56,12 @@ while true; do
 	done
 	if [[ $[$lanename] -gt 39 ]]; then
 		echo "Player $input wins!! Well played !"
-		exit
+		break
 	fi	
 
 done
 
-	
+echo Thank you for playing CISC220 Racing Arena
 	
 
 
