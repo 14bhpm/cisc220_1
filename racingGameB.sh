@@ -40,10 +40,11 @@ while true; do
 	read -n1 -p "Enter step: " input
 	
 	# CLEAR SCREEN
-	printf "\033c"
+	clear
 	
 	((lane$input+=1))
-	((remDistance$input-=1))	
+	((remDistance$input-=1))
+	lanename=lane$input	
 	for ((n=1; n<$mainInput; n++)); do
 		for ((i=0; i<lane$n; i++)); do
 			printf "~"
@@ -56,24 +57,17 @@ while true; do
 		done
 		
 		printf "# Lane $n #"
-		printf "\n"	
+		printf "\n"
+		
+			
 	done
-	# LOOP CONDITION
-	if (( $lane1>=40 || $lane2>=40 || $lane3>=40 )); then
-		break
-	fi
+	if [[ $[$lanename] -gt 39 ]]; then
+		echo "Player $input wins!! Well played !"
+		exit
+	fi	
+
 done
 
-# IF-ELSE BLOCK CHECKS WHO WINS
-if [[ $lane1>39 ]]; then
-	echo "PLAYER 1 WINS"
-elif [[ $lane2>39 ]]; then
-	echo "PLAYER 2 WINS"
-elif [[ $lane3>39 ]]; then
-	echo "PLAYER 3 WINS"
-fi
-
-echo done
 	
 	
 
