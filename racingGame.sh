@@ -3,149 +3,65 @@
 # GENERAL MESSAGE
 echo "Welcome to CISC 220 Racing Arena"
 
-echo "User 1 press 1 to move forward, User 2 press 2 and User 3 press 3"
+echo "User 1 press 1 to move forward, User 2 press 2 and User 3 press 3...... User N, press N"
 
 echo "|->                            # Lane 1 #"
 echo "|->                            # Lane 2 #"
-echo "|->                            # Lane 3 #"
+echo "|->                            # Lane N #"
 
 # ALIAS DEFINITION FOR CLEAR SCREEN
 alias cls='printf "\033c"'
 
-# ATTRIBUTES
-lane1=0
-lane2=0
-lane3=0
+# GET NUMBER OF USERS
+read -n1 -p "Enter the amount of users: " mainInput
+
+# I INCREMENTED THIS CUS THE MAIN FOR LOOP BELOW STARTS FROM N=1
+((mainInput=$mainInput+1))
+
+# DECLARE LANE1=0 & remDistance1=40, LANE2=0 & remDistance2=40, LANEN=0 & remDistanceN=40...... BASED ON USERS INPUT
+
+for (( n=1; n<$mainInput; n++ )); do
+    eval "lane$n=0";
+    eval "remDistance$n=40";
+done 
+
 
 # KEEPS ON LOOPING UNTIL ANY OF THE LANE VARIABLES IS GREATER OR EQUAL TO 40
 while true; do
-	
-	# NEW LINE
 	echo ""
-	
 	# INPUT
 	read -n1 -p "Enter step: " input
 	
 	# CLEAR SCREEN
-	printf "\033c"
+	clear
 	
-	# INPUT VERIFICATION
-	#flag=0
-	#while true; do
-
-#		case $input in
-#		*[!1-3]*) flag=0 ;;
-#		*) flag=1 ;;
-#		esac
-
-#		if [[ $flag == 0 ]] || [[ ${#totalVar} == 0 ]]; then
-#			echo ""
-#			read -n1 -p"ERROR! Please insert 1, 2 or 3: " input
-#			continue
-#		elif [[ $flag == 1 ]]; then
-#			break
-#		fi
-	
-#	done
-	
-	# IF-ELSE BLOCK INCREMENTS ATTRIBUTES ACCORDINGLY
-	if [[ $input == 1 ]]; then
-	
-		# INCREMENT
-		((lane1=$lane1+1))
+	((lane$input+=1))
+	((remDistance$input-=1))
+	lanename=lane$input	
+	for ((n=1; n<$mainInput; n++)); do
+		for ((i=0; i<lane$n; i++)); do
+			printf "~"
+		done
 		
-	elif [[ $input == 2 ]]; then
-	
-		# INCREMENT
-		((lane2=$lane2+1))
+		printf "|->"
 		
-	elif [[ $input == 3 ]]; then
-	
-		# INCREMENT
-		((lane3=$lane3+1))
-
-	fi
-	
-	# PRINT COVERED DISTANCE
-	for (( n=0; n<$lane1; n++ )); do
-		printf "~"
+		for ((j=0; j<remDistance$n; j++)); do
+			printf " "
+		done
+		
+		printf "# Lane $n #"
+		printf "\n"
+		
+			
 	done
-	
-	# PRINT CAR
-	printf "|->"
-	
-	# PRINT REMAINING DISTANCE
-	(( remDistance1=40-$lane1 ))
-	for (( n=0; n<$remDistance1; n++ )); do
-		printf " "
-	done
-	
-	# PRINT END OF TRACK 2
-	printf "# Lane 1 #"
-	
-	# NEW LINE
-	echo ""
-	
-	# PRINT COVERED DISTANCE
-	for (( n=0; n<$lane2; n++ )); do
-		printf "~"
-	done
-	
-	# PRINT CAR
-	printf "|->"
-	
-	# PRINT REMAINING DISTANCE
-	(( remDistance2=40-$lane2 ))
-	for (( n=0; n<$remDistance2; n++ )); do
-		printf " "
-	done
-	
-	# PRINT END OF TRACK 2
-	printf "# Lane 2 #"
-	
-	# NEW LINE
-	echo ""
-	
-	# PRINT COVERED DISTANCE
-	for (( n=0; n<$lane3; n++ )); do
-		printf "~"
-	done
-	
-	# PRINT CAR
-	printf "|->"
-	
-	# PRINT REMAINING DISTANCE
-	(( remDistance3=40-$lane3 ))
-	for (( n=0; n<$remDistance3; n++ )); do
-		printf " "
-	done
-	
-	# PRINT END OF TRACK 3
-	printf "# Lane 3 #"
-	
-	# LOOP CONDITION
-	if (( $lane1==40 || $lane2==40 || $lane3==40 )); then
+	if [[ $[$lanename] -gt 39 ]]; then
+		echo "Player $input wins!! Well played !"
 		break
-	fi
+	fi	
+
 done
 
-# NEW LINE
-echo ""
-echo ""
-
-# IF-ELSE BLOCK CHECKS WHO WINS
-if [[ $lane1 == 40 ]]; then
-	echo "PLAYER 1 WINS"
-elif [[ $lane2 == 40 ]]; then
-	echo "PLAYER 2 WINS"
-elif [[ $lane3 == 40 ]]; then
-	echo "PLAYER 3 WINS"
-fi
-
-# NEW LINE
-echo ""
-
-	
+echo Thank you for playing CISC220 Racing Arena
 	
 
 
