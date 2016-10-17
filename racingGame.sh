@@ -32,7 +32,7 @@ while true; do
 done
 
 # GENERAL GAME ENGINE DESIGN
-#while(totalScoreVariable <= 40) //the code below should be in this loop, we should think of how to make a total score variable
+#while(totalScoreVariable <= 40) //the code below should be in this loop, we should think of how to make a totalScoreVariable
 lane1=0
 
 if (( input == 1 )); then
