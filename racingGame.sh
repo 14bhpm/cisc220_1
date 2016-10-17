@@ -19,7 +19,10 @@ lane3=0
 
 # KEEPS ON LOOPING UNTIL ANY OF THE LANE VARIABLES IS GREATER OR EQUAL TO 40
 while true; do
+	
+	# NEW LINE
 	echo ""
+	
 	# INPUT
 	read -n1 -p "Enter step: " input
 	
@@ -61,7 +64,7 @@ while true; do
 		
 		# PRINT REMAINING DISTANCE
 		(( remDistance1=40-$lane1 ))
-		for (( n=0; n<remDistance; n++ )); do
+		for (( n=0; n<$remDistance1; n++ )); do
 			printf " "
 		done
 		
@@ -83,7 +86,7 @@ while true; do
 		
 		# PRINT REMAINING DISTANCE
 		(( remDistance2=40-$lane2 ))
-		for (( n=0; n<$lane2; n++ )); do
+		for (( n=0; n<$remDistance2; n++ )); do
 			printf " "
 		done
 		
@@ -91,12 +94,25 @@ while true; do
 		printf "# Lane 2 #"
 		
 	elif [[ $input == 3 ]]; then
+	
+		# INCREMENT
 		((lane3=$lane3+1))
+		
+		# PRINT COVERED DISTANCE
 		for (( n=0; n<$lane3; n++ )); do
 			printf "~"
 		done
+		
+		# PRINT CAR
 		printf "|->"
-		printf "\t"
+		
+		# PRINT REMAINING DISTANCE
+		(( remDistance3=40-$lane3 ))
+		for (( n=0; n<$remDistance3; n++ )); do
+			printf " "
+		done
+		
+		# PRINT END OF TRACK 3
 		printf "# Lane 3 #"
 	fi
 	
